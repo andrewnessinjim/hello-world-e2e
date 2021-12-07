@@ -32,11 +32,11 @@ jobs:
       - run:
           name: "Save docker image layer cache"
           command: |
-            mkdir -p /caches
+            mkdir -p ./caches
             docker save -o ./caches/hello-world-e2e.tar hello-world-e2e
       - save_cache:
           paths:
-            - /caches/hello-world-e2e.tar
+            - ./caches/hello-world-e2e.tar
           key: v1-{{ .Branch }}-{{ epoch }}
 
 # Invoke jobs via workflows
