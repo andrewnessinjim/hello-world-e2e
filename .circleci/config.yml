@@ -13,12 +13,29 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
+      - run:
+          name: "Install heroku (If not already installed)"
+          command: |
+                if [[ $(command -v heroku) == "" ]]; then
+                  curl https://cli-assets.heroku.com/install.sh | sh
+                else
+                  echo "Heroku is already installed. No operation was performed."
+                fi
       - setup_remote_docker:
           version: 20.10.11
       - checkout
       - run:
           name: "Build production docker image"
-          command: "docker build -t hello-world-e2e ."
+          command: "docker build -t registry.heroku.com/hello-world-e2e/web ."
+      - run:
+          name: "Login to heroku"
+          command: "heroku container:login"
+      - run:
+          name: "Push image to heroku"
+          command: "docker push registry.heroku.com/hello-world-e2e/web"
+      - run:
+          name: "Release the image"
+          command: "heroku container:release web --app hello-world-e2e"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
