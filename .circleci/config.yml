@@ -16,28 +16,9 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
       - checkout
-      - restore_cache:
-          keys:
-            - v1-{{ .Branch }}
-          paths:
-            - ./caches/hello-world-e2e.tar
-      - run:
-          name: Load docker image layer cache
-          command: |
-            set +o pipefail
-            docker load -i /caches/hello-world-e2e.tar | true
       - run:
           name: "Build production docker image"
-          command: "docker build --cache-from=hello-world-e2e -t hello-world-e2e ."
-      - run:
-          name: "Save docker image layer cache"
-          command: |
-            mkdir -p ./caches
-            docker save -o ./caches/hello-world-e2e.tar hello-world-e2e
-      - save_cache:
-          paths:
-            - ./caches/hello-world-e2e.tar
-          key: v1-{{ .Branch }}-{{ epoch }}
+          command: "docker build -t hello-world-e2e ."
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
