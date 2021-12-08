@@ -1,5 +1,18 @@
 version: 2.1
 
+commands:
+  publish-to-heroku:
+    steps:
+      - run:
+          name: "Login to heroku"
+          command: "heroku container:login"
+      - run:
+          name: "Push image to heroku"
+          command: "docker push registry.heroku.com/hello-world-e2e/web"
+      - run:
+          name: "Release the image"
+          command: "heroku container:release web --app hello-world-e2e"
+
 jobs:
   build-docker-image:
     docker:
@@ -19,15 +32,7 @@ jobs:
       - run:
           name: "Build production docker image"
           command: "docker build -t registry.heroku.com/hello-world-e2e/web ."
-      - run:
-          name: "Login to heroku"
-          command: "heroku container:login"
-      - run:
-          name: "Push image to heroku"
-          command: "docker push registry.heroku.com/hello-world-e2e/web"
-      - run:
-          name: "Release the image"
-          command: "heroku container:release web --app hello-world-e2e"
+      - publish-to-heroku
 
 workflows:
   build-image:
