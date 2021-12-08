@@ -32,7 +32,12 @@ jobs:
       - run:
           name: "Build production docker image"
           command: "docker build -t registry.heroku.com/hello-world-e2e/web ."
-      - publish-to-heroku
+      - when:
+          condition:
+            and:
+              - equal: [production, <<pipeline.git.branch>>]
+          steps:
+            - publish-to-heroku
 
 workflows:
   build-image:
@@ -40,5 +45,6 @@ workflows:
       or:
         - equal: [develop, <<pipeline.git.branch>>]
         - equal: [circleci, <<pipeline.git.branch>>]
+        - equal: [production, <<pipeline.git.branch>>]
     jobs:
       - build-docker-image
