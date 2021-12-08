@@ -42,6 +42,7 @@ jobs:
 workflows:
   build-image:
     when:
-      - equal: [develop, <<pipeline.git.branch>>]
+      and:
+        - equal: [develop, <<pipeline.git.branch>>]
     jobs:
       - build-docker-image
