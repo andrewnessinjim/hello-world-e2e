@@ -39,6 +39,14 @@ jobs:
       - when:
           condition:
             and:
+              - equal: [develop, <<pipeline.git.branch>>]
+          steps:
+            - run:
+                name: "Run e2e tests in docker-compose env"
+                command: "docker-compose -f ./e2e/docker-compose.circleci-dev.yml up  --exit-code-from cypress"
+      - when:
+          condition:
+            and:
               - equal: [production, <<pipeline.git.branch>>]
           steps:
             - install-heroku
