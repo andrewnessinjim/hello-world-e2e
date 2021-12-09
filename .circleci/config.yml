@@ -13,16 +13,19 @@ commands:
                 fi
 
   publish-to-heroku:
+    parameters:
+      heroku-app-name:
+        type: string
     steps:
       - run:
           name: "Login to heroku"
           command: "heroku container:login"
       - run:
           name: "Push image to heroku"
-          command: "docker push registry.heroku.com/hello-world-e2e/web"
+          command: "docker push registry.heroku.com/<<parameters.heroku-app-name>>/web"
       - run:
           name: "Release the image"
-          command: "heroku container:release web --app hello-world-e2e"
+          command: "heroku container:release web --app <<parameters.heroku-app-name>>"
 
 jobs:
   build-docker-image:
@@ -50,7 +53,8 @@ jobs:
               - equal: [production, <<pipeline.git.branch>>]
           steps:
             - install-heroku
-            - publish-to-heroku
+            - publish-to-heroku:
+                heroku-app-name: hello-world-e2e
 
 workflows:
   build-image:
