@@ -14,5 +14,4 @@ services:
       - CYPRESS_baseUrl=http://hello-world-web:3000
     working_dir: /e2e
     volumes:
-      - ./:/e2e
-    command: echo "Hello World"
+      - /home/circleci/project/e2e:/e2e
