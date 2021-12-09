@@ -4,14 +4,9 @@ version: '3.2'
 
 services:
   hello-world-web:
-    image: registry.heroku.com/hello-world-e2e/web
-
+    build: ../
+  
   cypress:
-    image: "cypress/included:9.1.1"
+    build: ./
     depends_on:
       - hello-world-web
-    environment:
-      - CYPRESS_baseUrl=http://hello-world-web:3000
-    working_dir: /e2e
-    volumes:
-      - /home/circleci/project/e2e:/e2e
