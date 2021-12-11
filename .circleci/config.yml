@@ -37,7 +37,7 @@ commands:
           command: "heroku container:release web --app <<parameters.heroku-app-name>>"
 
 jobs:
-  build-docker-image:
+  build-and-test-in-staging-and-release-to-production:
     docker:
       - image: cimg/base:2021.11
     resource_class: small
@@ -45,39 +45,42 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
       - checkout
-      - when:
-          condition:
-            and:
-              - equal: [develop, <<pipeline.git.branch>>]
-          steps:
-            - run:
-                name: "Run e2e tests in docker-compose env"
-                command: "docker-compose -f ./e2e/docker-compose.ci-dev-test.yml up  --exit-code-from cypress"
-      - when:
-          condition:
-            and:
-              - equal: [production, <<pipeline.git.branch>>]
-          steps:
-            - build-image:
-                tag: registry.heroku.com/hello-world-e2e-staging/web
-            - install-heroku
-            - publish-to-heroku:
-                heroku-app-name: hello-world-e2e-staging
-            - run:
-                name: "Run e2e tests against heroku staging env"
-                command: "docker-compose -f ./e2e/docker-compose.ci-staging-test.yml up  --exit-code-from cypress"
-            - run:
-                name: "Tag docker image for heroku production env"
-                command: "docker tag registry.heroku.com/hello-world-e2e-staging/web registry.heroku.com/hello-world-e2e/web"
-            - publish-to-heroku:
-                heroku-app-name: hello-world-e2e
+      - build-image:
+          tag: registry.heroku.com/hello-world-e2e-staging/web
+      - install-heroku
+      - publish-to-heroku:
+          heroku-app-name: hello-world-e2e-staging
+      - run:
+          name: "Run e2e tests against heroku staging env"
+          command: "docker-compose -f ./e2e/docker-compose.ci-staging-test.yml up  --exit-code-from cypress"
+      - run:
+          name: "Tag docker image for heroku production env"
+          command: "docker tag registry.heroku.com/hello-world-e2e-staging/web registry.heroku.com/hello-world-e2e/web"
+      - publish-to-heroku:
+          heroku-app-name: hello-world-e2e
+
+  build-and-test-in-docker-compose:
+    docker:
+      - image: cimg/base:2021.11
+    resource_class: small
+    steps:
+      - setup_remote_docker:
+          version: 20.10.11
+      - checkout
+      - run:
+          name: "Run e2e tests in docker-compose env"
+          command: "docker-compose -f ./e2e/docker-compose.ci-dev-test.yml up  --exit-code-from cypress"
 
 workflows:
-  build-image:
-    when:
-      or:
-        - equal: [develop, <<pipeline.git.branch>>]
-        - equal: [circleci, <<pipeline.git.branch>>]
-        - equal: [production, <<pipeline.git.branch>>]
+  dev-build:
     jobs:
-      - build-docker-image
+      - build-and-test-in-docker-compose:
+          filters:
+            branches:
+              only: /develop/
+  prod-build:
+    jobs:
+      - build-and-test-in-staging-and-release-to-production:
+          filters:
+            branches:
+              only: /production/
