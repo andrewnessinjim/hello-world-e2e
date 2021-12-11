@@ -70,6 +70,11 @@ jobs:
       - run:
           name: "Run e2e tests in docker-compose env"
           command: "docker-compose -f ./e2e/docker-compose.ci-dev-test.yml up  --exit-code-from cypress"
+      - run:
+          name: "Copy cypress videos to executor"
+          command: "docker container cp e2e_cypress_1:/e2e/cypress/videos ./"
+      - store_artifacts:
+          path: ./videos
 
 workflows:
   dev-build:
