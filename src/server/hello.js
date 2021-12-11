@@ -1,8 +1,11 @@
-var http = require("http");
+const http = require("http");
+const hello = require("./lib");
+
 const PORT = process.env.PORT || 3000;
 
+
 http.createServer(function(req, res) {
-    res.write("<p>Hello World!</p>");
+    res.write(hello());
     res.end();
 }).listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
