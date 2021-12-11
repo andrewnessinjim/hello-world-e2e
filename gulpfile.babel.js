@@ -20,6 +20,15 @@ gulp.task("server:build",
     )
 );
 
+gulp.task("server:dev",
+    gulp.series(
+        "server:build",
+        gulp.parallel(
+            watchServer,
+            runServer
+        )
+));
+
 function buildServer() {
     return gulp.src([
         "./src/server/**/*.js",
@@ -30,4 +39,22 @@ function buildServer() {
     .pipe($.babel())
     .pipe($.sourcemaps.write(".", {sourceRoot: path.join(__dirname, "src", "server")}))
     .pipe(gulp.dest("./build"));
+}
+
+function watchServer(){
+    return gulp.watch([
+        "./src/server/**/*.js",
+        "./src/server/**/*.ts",
+    ], gulp.parallel(
+        buildServer
+    ));
+}
+
+function runServer() {
+    return $.nodemon({
+        script: "./run.js",
+        watch: "./build",
+        ignore: ["**/tests"],
+        nodeArgs: ["--inspect=0.0.0.0:9229"]
+    })
 }

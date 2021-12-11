@@ -1,13 +1,21 @@
 FROM  node:17-bullseye-slim
 
+ENV NODE_ENV=development
+ENV PATH=/app/node_modules/.bin:$PATH
+
 #Express port
 EXPOSE 3000
 
-RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
 
-COPY --chown=node:node . .
+COPY package*json ./
+RUN npm ci && npm cache clean --force
 
-ENV NODE_ENV=production
+WORKDIR /app/sourcecode
 
-CMD ["node", "/app/src/server/hello.js"]
+EXPOSE 9229
+
+#Hack to solve cypress perm error
+RUN chmod 777 /root
+
+CMD gulp server:dev 
