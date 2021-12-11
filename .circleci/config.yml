@@ -52,7 +52,7 @@ jobs:
           steps:
             - run:
                 name: "Run e2e tests in docker-compose env"
-                command: "docker-compose -f ./e2e/docker-compose.ci-dev-build.yml up  --exit-code-from cypress"
+                command: "docker-compose -f ./e2e/docker-compose.ci-dev-test.yml up  --exit-code-from cypress"
       - when:
           condition:
             and:
@@ -65,7 +65,7 @@ jobs:
                 heroku-app-name: hello-world-e2e-staging
             - run:
                 name: "Run e2e tests against heroku staging env"
-                command: "docker-compose -f ./e2e/docker-compose.ci-staging-build.yml up  --exit-code-from cypress"
+                command: "docker-compose -f ./e2e/docker-compose.ci-staging-test.yml up  --exit-code-from cypress"
             - run:
                 name: "Tag docker image for heroku production env"
                 command: "docker tag registry.heroku.com/hello-world-e2e-staging/web registry.heroku.com/hello-world-e2e/web"

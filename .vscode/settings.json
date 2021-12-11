@@ -11,8 +11,8 @@
               "docker-compose.vs.debug",
               "docker-compose.vs.release",
               "docker-cloud",
-              "docker-compose.ci-dev-build",
-              "docker-compose.ci-staging-build"
+              "docker-compose.ci-dev-test",
+              "docker-compose.ci-staging-test"
             ],
             "extensionsGlob": ["yaml", "yml"],
             "filename": true,
