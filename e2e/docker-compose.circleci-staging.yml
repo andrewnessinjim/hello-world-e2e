@@ -1,0 +1,9 @@
+# Approach from https://mtlynch.io/painless-web-app-testing/
+
+version: '3.2'
+
+services:
+  cypress:
+    build: ./
+    environment:
+      - CYPRESS_baseUrl=https://hello-world-e2e-staging.herokuapp.com/
