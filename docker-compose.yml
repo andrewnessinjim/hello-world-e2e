@@ -4,6 +4,7 @@ services:
   local-hello-world-e2e:
       build:
         context: .
+        target: dev
       volumes:
         - ./:/app/sourcecode
       ports:
