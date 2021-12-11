@@ -12,6 +12,15 @@ commands:
                   echo "Heroku is already installed. No operation was performed."
                 fi
 
+  build-image:
+    parameters:
+      tag:
+        type: string
+    steps:
+      - run:
+          name: "Build production docker image with tag name <<parameters.tag>>"
+          command: "docker build -t <<parameters.tag>> ."
+
   publish-to-heroku:
     parameters:
       heroku-app-name:
@@ -36,9 +45,6 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
       - checkout
-      - run:
-          name: "Build production docker image"
-          command: "docker build -t registry.heroku.com/hello-world-e2e/web ."
       - when:
           condition:
             and:
@@ -52,6 +58,8 @@ jobs:
             and:
               - equal: [production, <<pipeline.git.branch>>]
           steps:
+            - build-image:
+                tag: registry.heroku.com/hello-world-e2e/web
             - install-heroku
             - publish-to-heroku:
                 heroku-app-name: hello-world-e2e
