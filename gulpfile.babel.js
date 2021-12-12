@@ -5,6 +5,7 @@ import chalk from "chalk";
 
 import { webpack } from "webpack";
 import webpackDevConfig from "./webpack.config.dev";
+import webpackProdConfig from "./webpack.config.prod";
 
 const $ = require("gulp-load-plugins")();
 
@@ -63,7 +64,40 @@ function runServer() {
     })
 }
 
+gulp.task("client:build", buildClient);
 gulp.task("client:dev", watchClient);
+
+const consoleStats = {
+    colors: true,
+    exclude: ["node_modules"],
+    chunks: false,
+    assets: false,
+    timings: true,
+    modules: false,
+    hash: false,
+    version: false
+}
+
+function buildClient(done){
+    let webpackConfig;
+    if(process.env.NODE_ENV === "production") {
+        console.log(chalk.bgRed.white("Using webpack PRODUCTION config"));
+		webpackConfig = webpackProdConfig;
+	} else {
+		console.log(chalk.bgRed.white("Using webpack DEVELOPMENT config"));
+		webpackConfig = webpackDevConfig;
+	}
+
+    webpack(webpackConfig, (err, stats) => {
+		if(err) {
+			done(err);
+			return;
+		}
+
+		console.log(stats.toString(consoleStats));
+		done();
+	});
+}
 
 function watchClient() {
     const WebpackDevServer = require("webpack-dev-server");
@@ -80,3 +114,4 @@ function watchClient() {
 }
 
 gulp.task("dev", gulp.parallel("server:dev", "client:dev"));
+gulp.task("build", gulp.parallel("server:build", "client:build"));

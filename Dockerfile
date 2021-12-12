@@ -33,9 +33,9 @@ FROM base as prod
 
 COPY . .
 
-RUN gulp server:build 
-
 ENV NODE_ENV=production
+
+RUN gulp build
 
 #This will clean up non-production dependencies because NODE_ENV is now production (Disabled for now to save build time in circleci)
 #RUN npm ci && npm cache clean --force

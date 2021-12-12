@@ -14,7 +14,14 @@ const webpackDevConfig = merge(common, {
 				{loader: "sass-loader", options: {sourceMap: true}}] 
 			}
         ]
-    }
+    },
+    plugins: [
+		new webpack.DefinePlugin({
+			"process.env.NODE_ENV": JSON.stringify("development"),
+			IS_PRODUCTION: false,
+			IS_DEVELOPMENT: true
+		})
+	]
 });
 
 module.exports = webpackDevConfig;
