@@ -8,4 +8,8 @@ html(lang="en")
         if useExternalStyles
             link(rel="stylesheet", href="/build/app.css")
     body
-        p Hello World!
+        #mount
+
+        script(src=scriptRoot + "/runtime.js")
+        script(src=scriptRoot + "/app.js")
+        script(src=scriptRoot + "/vendor.js")
