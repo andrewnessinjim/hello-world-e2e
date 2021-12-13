@@ -21,7 +21,10 @@ gulp.task("server:clean", done => {
 gulp.task("server:build", 
     gulp.series(
         "server:clean",
-        buildServer
+        gulp.parallel(
+            buildServer,
+            copyStaticServerAssets
+        )
     )
 );
 
@@ -46,11 +49,18 @@ function buildServer() {
     .pipe(gulp.dest("./build"));
 }
 
+function copyStaticServerAssets(){
+    return gulp.src("./src/server/schema.graphql")
+        .pipe($.changed("./build"))
+        .pipe(gulp.dest("./build"));
+}
+
 function watchServer(){
     return gulp.watch([
         "./src/server/**/*.js",
         "./src/server/**/*.ts",
     ], gulp.parallel(
+        copyStaticServerAssets,
         buildServer
     ));
 }
