@@ -21,7 +21,8 @@ services:
       - hello-world-web
 
   mongo:
-    image: mongo:5.0.3
+    build:
+      context: ../mongodb
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
@@ -30,5 +31,3 @@ services:
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     tty: true
-    volumes:
-      - ../mongodb:/docker-entrypoint-initdb.d:ro
