@@ -31,5 +31,4 @@ services:
       test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
     tty: true
     volumes:
-      - local-mongo-data:/data/db
       - ../mongodb:/docker-entrypoint-initdb.d:ro
