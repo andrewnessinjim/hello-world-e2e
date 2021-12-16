@@ -11,9 +11,12 @@ import {
 
 import { useQuery, gql } from "@apollo/client";
 
-const MESSAGE_QUERY = gql`
+
+const HOMEPAGE_QUERY = gql`
 query {
-    message
+  homePage {
+    heading
+  }
 }
 `
 const client = new ApolloClient({
@@ -21,25 +24,24 @@ const client = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-const HelloMessage = () => {
-    const {data} = useQuery(MESSAGE_QUERY);
+const SiteHeading = () => {
+    const {data} = useQuery(HOMEPAGE_QUERY);
 
     return (
-        <p>
+        <h1>
             {data && (
                 <>
-                    {data.message}
+                    {data.homePage.heading}
                 </>
             )}
-        </p>
+        </h1>
     )
 }
 
 ReactDOM.render(
     <ApolloProvider client={client}>
         <section>
-            <h1>Hello World!</h1>
-            <HelloMessage/>
+            <SiteHeading/>
         </section>
     </ApolloProvider>,
     document.getElementById("mount")

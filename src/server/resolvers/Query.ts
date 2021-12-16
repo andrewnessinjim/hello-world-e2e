@@ -1,10 +1,10 @@
 import homepage from "../dao/homepage";
 
-async function message() {
-    const {message} = await homepage.getHomePageData();
-    return message;
+async function homePage() {
+    const homePage = await homepage.getHomePageData();
+    return homePage;
 }
 
 export default {
-    message
+    homePage: homePage
 }

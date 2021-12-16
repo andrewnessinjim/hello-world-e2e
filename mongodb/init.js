@@ -17,5 +17,5 @@ let appDb = db.getSiblingDB(DB_NAMESPACE);
 
 appDb.pages.insertOne({
     pageName: "homePage",
-    message: "Hello from all of us"
+    heading: "Hello World!"
 });
