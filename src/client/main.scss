@@ -5,11 +5,13 @@
 
 body {
     background: #333;
+    color: #eeeeee;
+
     h1 {
-        color: #eeeeee;
         font-size: 13vw;
         text-align: center;
         margin: 30px;
         font-family: "Merienda", cursive;
+        max-width: 1200px;
     }
 }
