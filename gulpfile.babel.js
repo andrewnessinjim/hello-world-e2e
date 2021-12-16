@@ -59,6 +59,7 @@ function watchServer(){
     return gulp.watch([
         "./src/server/**/*.js",
         "./src/server/**/*.ts",
+        "./src/server/schema.graphql"
     ], gulp.parallel(
         copyStaticServerAssets,
         buildServer
