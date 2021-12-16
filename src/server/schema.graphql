@@ -4,15 +4,15 @@ type Query {
 
 type HomePage {
     heading: String!
-    sections: [Section]!
+    toolSets: [ToolSet]!
 }
 
-type Section {
+type ToolSet {
     heading: String!
-    logos: [Logo]!
+    tools: [Tool]!
 }
 
-type Logo {
+type Tool {
     logoKey: String!
     toolTip: String!
 }

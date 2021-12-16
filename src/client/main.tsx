@@ -16,9 +16,9 @@ const HOMEPAGE_QUERY = gql`
 query {
   homePage {
     heading
-    sections {
+    toolSets {
       heading
-      logos {
+      tools {
         logoKey
         toolTip
       }
@@ -37,9 +37,9 @@ const HomePage = () => {
         <main>{data && (
             <>
                 <Heading heading={data.homePage.heading}/>
-                {data.homePage.sections
-                .map((section, index) => 
-                    <Section key={index} heading={section.heading}/>
+                {data.homePage.toolSets
+                .map((toolSet, index) => 
+                    <ToolSet key={index} heading={toolSet.heading}/>
                 )}
             </>
         )}
@@ -49,7 +49,7 @@ const Heading = (props) => {
     return <h1>{props.heading}</h1>
 }
 
-const Section = (props) => {
+const ToolSet = (props) => {
     return (
         <section>
             <h2>{props.heading}</h2>

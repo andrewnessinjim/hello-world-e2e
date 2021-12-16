@@ -18,9 +18,9 @@ let appDb = db.getSiblingDB(DB_NAMESPACE);
 appDb.pages.insertOne({
     pageName: "homePage",
     heading: "Hello World!",
-    sections: [{
+    toolSets: [{
             heading: "Source code in",
-            logos: [{
+            tools: [{
                     logoKey : "typescript",
                     toolTip: ""
                 },{
@@ -35,7 +35,7 @@ appDb.pages.insertOne({
                 }]
         },{
             heading: "Using",
-            logos: [{
+            tools: [{
                     logoKey : "apollo",
                     toolTip: ""
                 },{
@@ -53,7 +53,7 @@ appDb.pages.insertOne({
                 }]
         },{
             heading: "Transformed by",
-            logos: [{
+            tools: [{
                     logoKey : "gulp",
                     toolTip: ""
                 },{
@@ -65,7 +65,7 @@ appDb.pages.insertOne({
                 }]
         },{
             heading: "Transformed into",
-            logos: [{
+            tools: [{
                     logoKey : "html",
                     toolTip: ""
                 },{
@@ -77,7 +77,7 @@ appDb.pages.insertOne({
                 }]
         },{
             heading: "Executed in",
-            logos: [{
+            tools: [{
                     logoKey : "nodejs",
                     toolTip: ""
                 },{
@@ -89,13 +89,13 @@ appDb.pages.insertOne({
                 }]
         },{
             heading: "Packaged into",
-            logos: [{
+            tools: [{
                     logoKey : "docker",
                     toolTip: ""
                 }]
         },{
             heading: "Test cases in",
-            logos: [{
+            tools: [{
                     logoKey : "jest",
                     toolTip: ""
                 },{
@@ -104,28 +104,28 @@ appDb.pages.insertOne({
                 }]
         },{
             heading: "Automatically built, tested and deployed by",
-            logos: [{
+            tools: [{
                     logoKey : "docker",
                     toolTip: ""
                 }
             ]
         },{
             heading: "Deployed to",
-            logos: [{
+            tools: [{
                     logoKey : "heroku",
                     toolTip: ""
                 }
             ]
         },{
             heading: "Dependencies managed by",
-            logos: [{
+            tools: [{
                     logoKey : "npm",
                     toolTip: ""
                 }
             ]
         },{
             heading: "Version controlled by",
-            logos: [{
+            tools: [{
                     logoKey : "git",
                     toolTip: ""
                 },{
@@ -135,7 +135,7 @@ appDb.pages.insertOne({
             ]
         },{
             heading: "IDE used",
-            logos: [{
+            tools: [{
                     logoKey : "vscode",
                     toolTip: ""
                 }
