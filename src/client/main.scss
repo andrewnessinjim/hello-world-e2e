@@ -6,12 +6,30 @@
 body {
     background: #333;
     color: #eeeeee;
+}
 
+h1 {
+    font-size: 58px;
+    text-align: center;
+    margin: 30px;
+    font-family: "Merienda", cursive;
+    max-width: 1200px;
+}
+
+@media (min-width: 430px) {
     h1 {
-        font-size: 13vw;
-        text-align: center;
-        margin: 30px;
-        font-family: "Merienda", cursive;
-        max-width: 1200px;
+        font-size: 58px;
+    }
+}
+
+@media (min-width: 800px) {
+    h1 {
+        font-size: 72px;
+    }
+}
+
+@media (min-width: 1000px) {
+    h1 {
+        font-size: 120px;
     }
 }
