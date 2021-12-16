@@ -1,9 +1,15 @@
+@font-face {
+    font-family: "Merienda";
+    src: url("./fonts/Merienda-Regular.ttf") format("truetype");
+}
+
 body {
     background: #333;
     h1 {
         color: #eeeeee;
-        font-size: 14vw;
+        font-size: 13vw;
         text-align: center;
         margin: 30px;
+        font-family: "Merienda", cursive;
     }
 }
