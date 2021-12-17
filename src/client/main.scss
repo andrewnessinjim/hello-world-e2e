@@ -6,14 +6,42 @@
 body {
     background: #333;
     color: #eeeeee;
+    font-family: "Merienda", cursive;
 }
 
 h1 {
     font-size: 58px;
     text-align: center;
-    margin: 30px;
-    font-family: "Merienda", cursive;
+    margin: auto;
     max-width: 1200px;
+}
+
+.tool-sets-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    text-align: right;
+    max-width: fit-content;
+}
+
+.tool-set-container {
+    display: flex;
+}
+
+.tool-set-container h2{
+    font-size: 16px;
+    width: 280px;
+}
+
+.logos-container {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.logo {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 @media (min-width: 430px) {

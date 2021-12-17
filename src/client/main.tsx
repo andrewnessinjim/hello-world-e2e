@@ -10,7 +10,7 @@ import {
 } from "@apollo/client";
 
 import { useQuery, gql } from "@apollo/client";
-
+import images from "./images/loadImages";
 
 const HOMEPAGE_QUERY = gql`
 query {
@@ -37,10 +37,15 @@ const HomePage = () => {
         <main>{data && (
             <>
                 <Heading heading={data.homePage.heading}/>
-                {data.homePage.toolSets
-                .map((toolSet, index) => 
-                    <ToolSet key={index} heading={toolSet.heading}/>
-                )}
+                <div className="tool-sets-container">
+                    {data.homePage.toolSets
+                    .map((toolSet, index) => 
+                        <ToolSet
+                            key={index}
+                            heading={toolSet.heading}
+                            tools={toolSet.tools}/>
+                    )}
+                </div>
             </>
         )}
         </main>)
@@ -51,8 +56,17 @@ const Heading = (props) => {
 
 const ToolSet = (props) => {
     return (
-        <section>
+        <section className="tool-set-container">
             <h2>{props.heading}</h2>
+            <div className="logos-container">
+                {props.tools.map(tool => 
+                    <img 
+                        src={images[tool.logoKey]}
+                        height="32px"
+                        className="logo"/>)
+                }
+            </div>
+            
         </section>
     );
 }
