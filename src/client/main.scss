@@ -10,7 +10,6 @@ body {
 }
 
 h1 {
-    font-size: 58px;
     text-align: center;
     margin: auto;
     max-width: 1200px;
@@ -44,9 +43,15 @@ h1 {
     margin-right: 5px;
 }
 
-@media (min-width: 440px) {
+@media (min-width: 360px) {
     h1 {
-        font-size: 58px;
+        font-size: 42px;
+    }
+    .tool-set-container {
+        h2 {
+            font-size: 12px;
+            width: 150px;
+        }
     }
 }
 
