@@ -60,8 +60,9 @@ const ToolSet = (props) => {
         <section className="tool-set-container">
             <h2>{props.heading}</h2>
             <div className="logos-container">
-                {props.tools.map(tool => 
+                {props.tools.map((tool, index) =>
                     <img 
+                        key={index}
                         src={images[tool.logoKey]}
                         height={tool.logoHeightPx? tool.logoHeightPx+"px": "32px"}
                         className="logo"/>)
