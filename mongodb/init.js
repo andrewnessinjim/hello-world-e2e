@@ -103,9 +103,9 @@ appDb.pages.insertOne({
                     toolTip: ""
                 }]
         },{
-            heading: "Automatically built, tested and deployed by",
+            heading: "Built, tested and deployed by",
             tools: [{
-                    logoKey : "docker",
+                    logoKey : "circleci",
                     toolTip: ""
                 }
             ]
