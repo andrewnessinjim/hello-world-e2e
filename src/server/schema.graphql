@@ -15,4 +15,5 @@ type ToolSet {
 type Tool {
     logoKey: String!
     toolTip: String!
+    logoHeightPx: Int
 }

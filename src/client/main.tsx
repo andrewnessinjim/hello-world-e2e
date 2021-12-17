@@ -21,6 +21,7 @@ query {
       tools {
         logoKey
         toolTip
+        logoHeightPx
       }
     }
   }
@@ -62,7 +63,7 @@ const ToolSet = (props) => {
                 {props.tools.map(tool => 
                     <img 
                         src={images[tool.logoKey]}
-                        height="32px"
+                        height={tool.logoHeightPx? tool.logoHeightPx+"px": "32px"}
                         className="logo"/>)
                 }
             </div>

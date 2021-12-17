@@ -37,10 +37,12 @@ appDb.pages.insertOne({
             heading: "Using",
             tools: [{
                     logoKey : "apollo",
-                    toolTip: ""
+                    toolTip: "",
+                    logoHeightPx: 24
                 },{
                     logoKey : "express",
-                    toolTip: ""
+                    toolTip: "",
+                    logoHeightPx: 18
                 },{
                     logoKey : "graphql",
                     toolTip: ""
@@ -120,7 +122,8 @@ appDb.pages.insertOne({
             heading: "Dependencies managed by",
             tools: [{
                     logoKey : "npm",
-                    toolTip: ""
+                    toolTip: "",
+                    logoHeightPx: 18
                 }
             ]
         },{
