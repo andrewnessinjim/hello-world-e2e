@@ -4,9 +4,7 @@ version: '2.4'
 
 services:
   hello-world-web:
-    build:
-      context: ../
-      target: prod
+    image: ${APP_IMAGE}
     environment:
         - DB_URI=mongodb://hello-world-user:hello-world-pass@mongo:27017
         - DB_NAMESPACE=helloworld

@@ -67,9 +67,11 @@ jobs:
       - setup_remote_docker:
           version: 20.10.11
       - checkout
+      - build-image:
+          tag: helloworld:<<pipeline.git.branch>>-<<pipeline.git.revision>>
       - run:
           name: "Run e2e tests in docker-compose env"
-          command: "docker-compose -f ./e2e/docker-compose.ci-dev-test.yml build --parallel && docker-compose -f ./e2e/docker-compose.ci-dev-test.yml up --exit-code-from cypress"
+          command: "APP_IMAGE=helloworld:<<pipeline.git.branch>>-<<pipeline.git.revision>> docker-compose -f ./e2e/docker-compose.ci-dev-test.yml up --exit-code-from cypress"
       - run:
           name: "Copy cypress videos to executor"
           command: "docker container cp e2e_cypress_1:/e2e/cypress/videos ./"
