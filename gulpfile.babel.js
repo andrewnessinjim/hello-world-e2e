@@ -126,3 +126,6 @@ function watchClient() {
 
 gulp.task("dev", gulp.parallel("server:dev", "client:dev"));
 gulp.task("build", gulp.parallel("server:build", "client:build"));
+gulp.task("test", function runJestTests(){
+    return gulp.src("src/server/__tests__").pipe($.jest.default());
+});

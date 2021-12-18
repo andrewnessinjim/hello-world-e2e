@@ -28,7 +28,7 @@ commands:
     steps:
       - run:
           name: "Run unit tests against <<parameters.tag>>"
-          command: "docker container run <<parameters.tag>> npm test"
+          command: "docker container run <<parameters.tag>> gulp test"
 
   publish-to-heroku:
     parameters:

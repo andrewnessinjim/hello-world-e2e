@@ -5,9 +5,6 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "scripts": {
-    "test": "jest"
-  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
@@ -20,6 +17,7 @@
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-changed": "^4.0.3",
+    "gulp-jest": "^4.0.4",
     "gulp-load-plugins": "^2.0.7",
     "gulp-nodemon": "^2.5.0",
     "gulp-sourcemaps": "^3.0.0",
