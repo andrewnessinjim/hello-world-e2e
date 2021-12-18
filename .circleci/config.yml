@@ -56,6 +56,8 @@ jobs:
       - checkout
       - build-image:
           tag: registry.heroku.com/hello-world-e2e-staging/web
+      - run-unit-tests:
+          tag: registry.heroku.com/hello-world-e2e-staging/web
       - install-heroku
       - publish-to-heroku:
           heroku-app-name: hello-world-e2e-staging
