@@ -8,6 +8,7 @@ import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
 
 import * as db from "./dao/db";
 import Query from "./resolvers/Query";
+import checkHealth from "./health";
 
 const PORT = process.env.PORT || 3000;
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -52,6 +53,12 @@ async function setUpRoutes(app) {
     const useExternalStyles = !isDevelopment;
     const scriptRoot = isDevelopment ? "http://localhost:8080" : "/build";
     
+    app.get("/healthcheck", (req, res) => {
+        const health = checkHealth();
+        res.setHeader('Content-Type', 'application/json');
+        res.end(JSON.stringify(health));
+    });
+
     app.get("/", async (req, res) => {
         res.render("index",{
             useExternalStyles,
