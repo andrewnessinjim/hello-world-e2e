@@ -2,11 +2,7 @@ const path = require("path");
 
 module.exports = {
     entry: {
-        app: {
-            import: "./src/client/main.tsx",
-            dependOn: "vendor"
-        },
-        vendor: ["react", "react-dom"]
+        app:  "./src/client/main.tsx"
     },
     output: {
         path: path.join(__dirname, "public", "build"),
