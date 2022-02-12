@@ -6,4 +6,4 @@ services:
   cypress:
     build: ./
     environment:
-      - CYPRESS_baseUrl=https://hello-world-e2e-staging.herokuapp.com/
+      - CYPRESS_baseUrl=https://ultimate-hello-world-staging.herokuapp.com/

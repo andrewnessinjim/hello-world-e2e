@@ -55,20 +55,20 @@ jobs:
           version: 20.10.11
       - checkout
       - build-image:
-          tag: registry.heroku.com/hello-world-e2e-staging/web
+          tag: registry.heroku.com/ultimate-hello-world-staging/web
       - run-unit-tests:
-          tag: registry.heroku.com/hello-world-e2e-staging/web
+          tag: registry.heroku.com/ultimate-hello-world-staging/web
       - install-heroku
       - publish-to-heroku:
-          heroku-app-name: hello-world-e2e-staging
+          heroku-app-name: ultimate-hello-world-staging
       - run:
           name: "Run e2e tests against heroku staging env"
           command: "docker-compose -f ./e2e/docker-compose.ci-staging-test.yml up  --exit-code-from cypress"
       - run:
           name: "Tag docker image for heroku production env"
-          command: "docker tag registry.heroku.com/hello-world-e2e-staging/web registry.heroku.com/hello-world-e2e/web"
+          command: "docker tag registry.heroku.com/ultimate-hello-world-staging/web registry.heroku.com/ultimate-hello-world/web"
       - publish-to-heroku:
-          heroku-app-name: hello-world-e2e
+          heroku-app-name: ultimate-hello-world
 
   build-and-test-in-docker-compose:
     docker:
@@ -80,13 +80,13 @@ jobs:
           docker_layer_caching: true
       - checkout
       - build-image:
-          tag: helloworld:<<pipeline.git.branch>>-<<pipeline.git.revision>>
+          tag: ultimate-hello-world:<<pipeline.git.branch>>-<<pipeline.git.revision>>
       - run-unit-tests:
-          tag: helloworld:<<pipeline.git.branch>>-<<pipeline.git.revision>>
+          tag: ultimate-hello-world:<<pipeline.git.branch>>-<<pipeline.git.revision>>
       - run:
           name: "Run e2e tests in docker-compose env"
           command: |
-            export APP_IMAGE=helloworld:<<pipeline.git.branch>>-<<pipeline.git.revision>>
+            export APP_IMAGE=ultimate-hello-world:<<pipeline.git.branch>>-<<pipeline.git.revision>>
             docker-compose -f ./e2e/docker-compose.ci-dev-test.yml build --parallel
             docker-compose -f ./e2e/docker-compose.ci-dev-test.yml up --exit-code-from cypress
       - run:

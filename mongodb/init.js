@@ -1,8 +1,8 @@
-let DB_NAMESPACE = "helloworld";
+let DB_NAMESPACE = "ultimateHelloWorld";
 db.createUser(
     {
-        user: "hello-world-user",
-        pwd: "hello-world-pass",
+        user: "ultimate-hello-world-user",
+        pwd: "ultimate-hello-world-pass",
         roles: [
             {
                 role: "readWrite",
@@ -12,7 +12,7 @@ db.createUser(
     }
 )
 
-db.auth("hello-world-user", "hello-world-pass");
+db.auth("ultimate-hello-world-user", "ultimate-hello-world-pass");
 let appDb = db.getSiblingDB(DB_NAMESPACE);
 
 appDb.pages.insertOne({

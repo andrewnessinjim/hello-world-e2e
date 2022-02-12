@@ -3,20 +3,20 @@
 version: '2.4'
 
 services:
-  hello-world-web:
+  ultimate-hello-world-web:
     image: ${APP_IMAGE}
     environment:
-        - DB_URI=mongodb://hello-world-user:hello-world-pass@mongo:27017
-        - DB_NAMESPACE=helloworld
+        - DB_URI=mongodb://ultimate-hello-world-user:ultimate-hello-world-pass@mongo:27017
+        - DB_NAMESPACE=ultimateHelloWorld
     depends_on:
       - mongo
 
   cypress:
     build: ./
     environment:
-      - CYPRESS_baseUrl=http://hello-world-web:3000
+      - CYPRESS_baseUrl=http://ultimate-hello-world-web:3000
     depends_on:
-      - hello-world-web
+      - ultimate-hello-world-web
 
   mongo:
     build:

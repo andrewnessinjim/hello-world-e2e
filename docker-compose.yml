@@ -1,13 +1,13 @@
 version: '2.4'
 
 services:
-  local-hello-world-e2e:
+  local-ultimate-hello-world:
       build:
         context: .
         target: dev
       environment:
-        - DB_URI=mongodb://hello-world-user:hello-world-pass@local-mongo:27017
-        - DB_NAMESPACE=helloworld
+        - DB_URI=mongodb://ultimate-hello-world-user:ultimate-hello-world-pass@local-mongo:27017
+        - DB_NAMESPACE=ultimateHelloWorld
       volumes:
         - ./:/app/sourcecode
       ports:
