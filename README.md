@@ -1,6 +1,6 @@
-# End to End Hello World
+# Ultimate Hello World
 
-A hello world app that does what all hello word apps have been traditionally doing: display a static hello world. You can view the app deployed [here](https://hello-world-e2e.herokuapp.com/). The page also shows the tools used in displaying just hello world:
+A hello world app that does what all hello word apps have been traditionally doing: display a static hello world. You can view the app deployed [here](https://ultimate-hello-world.herokuapp.com/). The page also shows the tools used in displaying just hello world:
 
 * User interface written in **ReactJS** and **Sass**
 * Server written with **Typescript** and executed in **NodeJS**
@@ -28,31 +28,30 @@ The main goal of this project is to demonstrate all these tools working together
 5) Run `docker volume prune` to drop the volume created from step 3.
 
 6) Make below modifications in `docker-compose.yml`:
-* Replace `local-hello-world-e2e` with `PROJECT_NAME`
-* Replace `hello-world-user` with `PROJECT_NAME-user`
-* Replace `hello-world-pass` with `PROJECT_NAME-pass`
-* Replace `helloworld` with `PROJECT_NAME`
+* Replace `local-ultimate-hello-world` with `local-PROJECT_NAME`
+* Replace `ultimate-hello-world-user` with `PROJECT_NAME-user`
+* Replace `ultimate-hello-world-pass` with `PROJECT_NAME-pass`
+* Replace `ultimateHelloWorld` db namespace with `PROJECT_NAME`
 
 7) Make below modifications in `mongodb/init.js`:
-* Replace `hello-world-user` with `PROJECT_NAME-user`
-* Replace `hello-world-pass` with `PROJECT_NAME-pass`
-* Replace `helloworld` with `PROJECT_NAME`
+* Replace `ultimate-hello-world-user` with `PROJECT_NAME-user`
+* Replace `ultimate-hello-world-pass` with `PROJECT_NAME-pass`
+* Replace `ultimateHelloWorld` db namespace with `PROJECT_NAME`
 
 8) Perform steps 3,4 and 5 to verify if "Hello World" output is still working.
 
 9) Make below modifications in `e2e/docker-compose.ci-dev-test.yml`:
-* Replace `hello-world-web` with `PROJECT_NAME-web`
-* Replace `hello-world-user` with `PROJECT_NAME-user`
-* Replace `hello-world-pass` with `PROJECT_NAME-pass`
-* Replace `helloworld` with `PROJECT_NAME`
+* Replace `ultimate-hello-world-web` with `PROJECT_NAME-web`
+* Replace `ultimate-hello-world-user` with `PROJECT_NAME-user`
+* Replace `ultimate-hello-world-pass` with `PROJECT_NAME-pass`
+* Replace `ultimateHelloWorld` db namespace with `PROJECT_NAME`
 
 10) Make below modifications in `e2e/docker-compose.ci-staging-test.yml`:
-* Replace `hello-world-e2e-staging` with `PROJECT_NAME-staging`
+* Replace `ultimate-hello-world-staging` with `PROJECT_NAME-staging`
 
 11) Make below modifications in `.circleci/config.yml`:
-* Replace `hello-world-e2e-staging` with `PROJECT_NAME-staging`
-* Replace `hello-world-e2e` with `PROJECT_NAME`
-* Replace `helloworld` with `PROJECT_NAME`
+* Replace `ultimate-hello-world-staging` with `PROJECT_NAME-staging`
+* Replace `ultimate-hello-world` with `PROJECT_NAME`
 
 12) Replace the contents in `README.md` to suit your project. Create a GitHub repo with name as `PROJECT_NAME` and push your `PROJECT_ROOT` to that repo's `develop` branch.
 
@@ -78,7 +77,7 @@ The main goal of this project is to demonstrate all these tools working together
         * Password: any strong password
         * Privileges: readWrite@`PROJECT_NAME`
     2) Staging user
-        * Username: `PROJECT_NAME`-staging-user
+        * Username: `PROJECT_NAME`-stagingUser
         * Password: any strong password
         * Privileges: readWrite@`PROJECT_NAME`-staging
 
