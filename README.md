@@ -1,5 +1,7 @@
 # Ultimate Hello World
 
+**Alternate version:** I also built another version of this template that takes advantage of create-react-app for front-end, but retains the same structure for node back-end. You can find it [here](https://github.com/andrewnessinjim/ultimate-hello-world-cra).
+
 A hello world app that does what all hello word apps have been traditionally doing: display a static hello world. You can view the app deployed [here](https://ultimate-hello-world.herokuapp.com/). The page also shows the tools used in displaying just hello world:
 
 * User interface written in **ReactJS** and **Sass**
