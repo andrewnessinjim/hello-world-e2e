@@ -109,7 +109,7 @@ The main goal of this project is to demonstrate all these tools working together
 *To be added*
 
 ## Motivation
-I put this together because I found the existing zero-config-solutions too abstract. I wanted more control over the tools without losing the benefits of end to end automation. After taking the courses listed below, I felt more comfortable configuring the tools separately and making them work together.
+I put this together because I found the existing zero-config-solutions too abstract. I wanted more control over the tools without losing the benefits of end to end automation. After taking the courses listed below, I felt more comfortable configuring the tools separately and making them work together. (This is no longer true, because I have fallen in love with NextJs. I would never use this template over NextJs.)
 
 ## Courses That Helped Me Put This Together
 
